@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
     <title>Ad 728x90</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,6 +48,7 @@
             const script = document.createElement('script');
             script.type = 'text/javascript';
             script.src = `https://www.highperformanceformat.com/${AD_KEY}/invoke.js`;
+            script.referrerPolicy = 'no-referrer';
             container.appendChild(script);
             
             console.log(`Ad 728x90 loaded at ${new Date().toLocaleTimeString()}`);
