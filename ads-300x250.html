@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad 300x250</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: transparent; 
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+        }
+        #ad-container {
+            width: 300px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div id="ad-container"></div>
+    
+    <script>
+        // Adsterra 300x250
+        const AD_KEY = '9c9e360fd4ca00dbdb74d7e64a33f6ed';
+        const AD_WIDTH = 300;
+        const AD_HEIGHT = 250;
+        const REFRESH_INTERVAL = 60000; // 60 seconds
+        
+        function loadAd() {
+            const container = document.getElementById('ad-container');
+            container.innerHTML = '';
+            
+            // Create atOptions
+            window.atOptions = {
+                'key': AD_KEY,
+                'format': 'iframe',
+                'height': AD_HEIGHT,
+                'width': AD_WIDTH,
+                'params': {}
+            };
+            
+            // Create invoke script
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = `https://www.highperformanceformat.com/${AD_KEY}/invoke.js`;
+            container.appendChild(script);
+            
+            console.log(`Ad 300x250 loaded at ${new Date().toLocaleTimeString()}`);
+        }
+        
+        // Initial load
+        loadAd();
+        
+        // Auto refresh
+        setInterval(loadAd, REFRESH_INTERVAL);
+    </script>
+</body>
+</html>
