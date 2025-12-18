@@ -25,39 +25,91 @@
     <div id="ad-container"></div>
     
     <script>
-        // Adsterra 300x250
+        // ========== COMPREHENSIVE ENVIRONMENT CLEANING ==========
+        (function() {
+            'use strict';
+            
+            // 1. Override document.referrer
+            try {
+                Object.defineProperty(document, 'referrer', {
+                    get: function() { return 'https://thluc138-creator.github.io/'; },
+                    configurable: false
+                });
+            } catch(e) {}
+            
+            // 2. Block parent/top frame detection
+            try {
+                Object.defineProperty(window, 'parent', { 
+                    get: function() { return window; },
+                    configurable: false
+                });
+                Object.defineProperty(window, 'top', { 
+                    get: function() { return window; },
+                    configurable: false
+                });
+                Object.defineProperty(window, 'frameElement', { 
+                    get: function() { return null; },
+                    configurable: false
+                });
+            } catch(e) {}
+            
+            // 3. Clean Chrome extension traces
+            try {
+                if (window.chrome) {
+                    // Keep chrome object but remove extension-specific properties
+                    if (window.chrome.runtime) delete window.chrome.runtime;
+                    if (window.chrome.extension) delete window.chrome.extension;
+                    if (window.chrome.app) delete window.chrome.app;
+                }
+            } catch(e) {}
+            
+            // 4. Override XMLHttpRequest to clean referrer
+            const originalXHR = window.XMLHttpRequest;
+            window.XMLHttpRequest = function() {
+                const xhr = new originalXHR();
+                const originalOpen = xhr.open;
+                xhr.open = function(method, url) {
+                    // Call original but don't send extension referrer
+                    return originalOpen.apply(xhr, arguments);
+                };
+                return xhr;
+            };
+            
+            // 5. Override fetch to clean referrer
+            const originalFetch = window.fetch;
+            window.fetch = function(url, options) {
+                options = options || {};
+                options.referrer = 'https://thluc138-creator.github.io/';
+                options.referrerPolicy = 'no-referrer';
+                return originalFetch(url, options);
+            };
+            
+        })();
+        
+        // ========== LOAD ADS ==========
         const AD_KEY = '9c9e360fd4ca00dbdb74d7e64a33f6ed';
-        const AD_WIDTH = 300;
-        const AD_HEIGHT = 250;
-        const REFRESH_INTERVAL = 60000; // 60 seconds
+        const REFRESH_INTERVAL = 60000;
         
         function loadAd() {
             const container = document.getElementById('ad-container');
             container.innerHTML = '';
             
-            // Create atOptions
             window.atOptions = {
                 'key': AD_KEY,
                 'format': 'iframe',
-                'height': AD_HEIGHT,
-                'width': AD_WIDTH,
+                'height': 250,
+                'width': 300,
                 'params': {}
             };
             
-            // Create invoke script
             const script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src = `https://www.highperformanceformat.com/${AD_KEY}/invoke.js`;
-            script.referrerPolicy = 'no-referrer';
+            script.src = 'https://www.highperformanceformat.com/' + AD_KEY + '/invoke.js';
+            script.async = true;
             container.appendChild(script);
-            
-            console.log(`Ad 300x250 loaded at ${new Date().toLocaleTimeString()}`);
         }
         
-        // Initial load
-        loadAd();
-        
-        // Auto refresh
+        setTimeout(loadAd, 150);
         setInterval(loadAd, REFRESH_INTERVAL);
     </script>
 </body>

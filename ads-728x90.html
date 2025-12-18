@@ -25,37 +25,66 @@
     <div id="ad-container"></div>
     
     <script>
-        // Adsterra 728x90
+        // ========== CLEAN ENVIRONMENT ==========
+        // Override referrer để trả về domain GitHub Pages
+        try {
+            Object.defineProperty(document, 'referrer', {
+                get: function() { return 'https://thluc138-creator.github.io/'; }
+            });
+        } catch(e) {}
+        
+        // Override location nếu cần
+        try {
+            if (window.location.href.includes('chrome-extension')) {
+                Object.defineProperty(window, 'location', {
+                    get: function() {
+                        return {
+                            href: 'https://thluc138-creator.github.io/qr-scanner-all-in-one-ads/ads-728x90.html',
+                            origin: 'https://thluc138-creator.github.io',
+                            protocol: 'https:',
+                            host: 'thluc138-creator.github.io',
+                            hostname: 'thluc138-creator.github.io',
+                            pathname: '/qr-scanner-all-in-one-ads/ads-728x90.html'
+                        };
+                    }
+                });
+            }
+        } catch(e) {}
+        
+        // Clean chrome extension traces
+        try {
+            if (window.chrome && window.chrome.runtime) {
+                delete window.chrome.runtime;
+            }
+        } catch(e) {}
+        
+        // ========== LOAD ADS ==========
         const AD_KEY = 'c05e7d514bdcd369774b9e8ad93729d9';
-        const AD_WIDTH = 728;
-        const AD_HEIGHT = 90;
-        const REFRESH_INTERVAL = 60000; // 60 seconds
+        const REFRESH_INTERVAL = 60000;
         
         function loadAd() {
             const container = document.getElementById('ad-container');
             container.innerHTML = '';
             
-            // Create atOptions
+            // Set atOptions
             window.atOptions = {
                 'key': AD_KEY,
                 'format': 'iframe',
-                'height': AD_HEIGHT,
-                'width': AD_WIDTH,
+                'height': 90,
+                'width': 728,
                 'params': {}
             };
             
-            // Create invoke script
+            // Create and load script
             const script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src = `https://www.highperformanceformat.com/${AD_KEY}/invoke.js`;
-            script.referrerPolicy = 'no-referrer';
+            script.src = 'https://www.highperformanceformat.com/' + AD_KEY + '/invoke.js';
+            script.async = true;
             container.appendChild(script);
-            
-            console.log(`Ad 728x90 loaded at ${new Date().toLocaleTimeString()}`);
         }
         
-        // Initial load
-        loadAd();
+        // Initial load after small delay
+        setTimeout(loadAd, 100);
         
         // Auto refresh
         setInterval(loadAd, REFRESH_INTERVAL);

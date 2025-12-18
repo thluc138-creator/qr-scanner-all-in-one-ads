@@ -25,39 +25,49 @@
     <div id="ad-container"></div>
     
     <script>
-        // Adsterra 160x600
+        // ========== CLEAN ENVIRONMENT ==========
+        try {
+            Object.defineProperty(document, 'referrer', {
+                get: function() { return 'https://thluc138-creator.github.io/'; }
+            });
+        } catch(e) {}
+        
+        try {
+            if (window.chrome && window.chrome.runtime) {
+                delete window.chrome.runtime;
+            }
+        } catch(e) {}
+        
+        // Block parent/top access detection
+        try {
+            Object.defineProperty(window, 'parent', { get: function() { return window; }});
+            Object.defineProperty(window, 'top', { get: function() { return window; }});
+        } catch(e) {}
+        
+        // ========== LOAD ADS ==========
         const AD_KEY = 'a2281486b27e3642d1e219a4d46074ee';
-        const AD_WIDTH = 160;
-        const AD_HEIGHT = 600;
-        const REFRESH_INTERVAL = 60000; // 60 seconds
+        const REFRESH_INTERVAL = 60000;
         
         function loadAd() {
             const container = document.getElementById('ad-container');
             container.innerHTML = '';
             
-            // Create atOptions
             window.atOptions = {
                 'key': AD_KEY,
                 'format': 'iframe',
-                'height': AD_HEIGHT,
-                'width': AD_WIDTH,
+                'height': 600,
+                'width': 160,
                 'params': {}
             };
             
-            // Create invoke script
             const script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src = `https://www.highperformanceformat.com/${AD_KEY}/invoke.js`;
-            script.referrerPolicy = 'no-referrer';
+            script.src = 'https://www.highperformanceformat.com/' + AD_KEY + '/invoke.js';
+            script.async = true;
             container.appendChild(script);
-            
-            console.log(`Ad 160x600 loaded at ${new Date().toLocaleTimeString()}`);
         }
         
-        // Initial load
-        loadAd();
-        
-        // Auto refresh
+        setTimeout(loadAd, 100);
         setInterval(loadAd, REFRESH_INTERVAL);
     </script>
 </body>
