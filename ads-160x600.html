@@ -1,74 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <title>Ad 160x600</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: transparent; 
-            overflow: hidden;
+        body {
+            background: transparent;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             min-height: 600px;
+            overflow: hidden;
         }
-        #ad-container {
+        .ad-container {
             width: 160px;
-            height: 600px;
+            min-height: 600px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <div id="ad-container"></div>
-    
-    <script>
-        // ========== CLEAN ENVIRONMENT ==========
-        try {
-            Object.defineProperty(document, 'referrer', {
-                get: function() { return 'https://thluc138-creator.github.io/'; }
-            });
-        } catch(e) {}
-        
-        try {
-            if (window.chrome && window.chrome.runtime) {
-                delete window.chrome.runtime;
-            }
-        } catch(e) {}
-        
-        // Block parent/top access detection
-        try {
-            Object.defineProperty(window, 'parent', { get: function() { return window; }});
-            Object.defineProperty(window, 'top', { get: function() { return window; }});
-        } catch(e) {}
-        
-        // ========== LOAD ADS ==========
-        const AD_KEY = 'a2281486b27e3642d1e219a4d46074ee';
-        const REFRESH_INTERVAL = 60000;
-        
-        function loadAd() {
-            const container = document.getElementById('ad-container');
-            container.innerHTML = '';
-            
-            window.atOptions = {
-                'key': AD_KEY,
-                'format': 'iframe',
-                'height': 600,
-                'width': 160,
-                'params': {}
-            };
-            
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'https://www.highperformanceformat.com/' + AD_KEY + '/invoke.js';
-            script.async = true;
-            container.appendChild(script);
-        }
-        
-        setTimeout(loadAd, 100);
-        setInterval(loadAd, REFRESH_INTERVAL);
-    </script>
+    <div class="ad-container">
+        <!-- HilltopAds Banner Code - Zone #6729876 -->
+        <script>
+        (function(gwxrr){
+        var d = document,
+            s = d.createElement('script'),
+            l = d.scripts[d.scripts.length - 1];
+        s.settings = gwxrr || {};
+        s.src = "//cultivated-cell.com/bDX.VtsidNGTlt0RYgWfcw/Cegmq9dugZfUzlrkJPYTEYz3HM/jFk_4xNozpYstKNZjNc/ynOaTFgS3kNwwM";
+        s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
+        l.parentNode.insertBefore(s, l);
+        })({})
+        </script>
+    </div>
 </body>
 </html>

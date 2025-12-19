@@ -1,93 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <title>Ad 728x90</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: transparent; 
-            overflow: hidden;
+        body {
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 90px;
+            overflow: hidden;
         }
-        #ad-container {
+        .ad-container {
             width: 728px;
             height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <div id="ad-container"></div>
-    
-    <script>
-        // ========== CLEAN ENVIRONMENT ==========
-        // Override referrer để trả về domain GitHub Pages
-        try {
-            Object.defineProperty(document, 'referrer', {
-                get: function() { return 'https://thluc138-creator.github.io/'; }
-            });
-        } catch(e) {}
-        
-        // Override location nếu cần
-        try {
-            if (window.location.href.includes('chrome-extension')) {
-                Object.defineProperty(window, 'location', {
-                    get: function() {
-                        return {
-                            href: 'https://thluc138-creator.github.io/qr-scanner-all-in-one-ads/ads-728x90.html',
-                            origin: 'https://thluc138-creator.github.io',
-                            protocol: 'https:',
-                            host: 'thluc138-creator.github.io',
-                            hostname: 'thluc138-creator.github.io',
-                            pathname: '/qr-scanner-all-in-one-ads/ads-728x90.html'
-                        };
-                    }
-                });
-            }
-        } catch(e) {}
-        
-        // Clean chrome extension traces
-        try {
-            if (window.chrome && window.chrome.runtime) {
-                delete window.chrome.runtime;
-            }
-        } catch(e) {}
-        
-        // ========== LOAD ADS ==========
-        const AD_KEY = 'c05e7d514bdcd369774b9e8ad93729d9';
-        const REFRESH_INTERVAL = 60000;
-        
-        function loadAd() {
-            const container = document.getElementById('ad-container');
-            container.innerHTML = '';
-            
-            // Set atOptions
-            window.atOptions = {
-                'key': AD_KEY,
-                'format': 'iframe',
-                'height': 90,
-                'width': 728,
-                'params': {}
-            };
-            
-            // Create and load script
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'https://www.highperformanceformat.com/' + AD_KEY + '/invoke.js';
-            script.async = true;
-            container.appendChild(script);
-        }
-        
-        // Initial load after small delay
-        setTimeout(loadAd, 100);
-        
-        // Auto refresh
-        setInterval(loadAd, REFRESH_INTERVAL);
-    </script>
+    <div class="ad-container">
+        <!-- HilltopAds Banner Code - Zone #6729876 -->
+        <script>
+        (function(gwxrr){
+        var d = document,
+            s = d.createElement('script'),
+            l = d.scripts[d.scripts.length - 1];
+        s.settings = gwxrr || {};
+        s.src = "//cultivated-cell.com/bDX.VtsidNGTlt0RYgWfcw/Cegmq9dugZfUzlrkJPYTEYz3HM/jFk_4xNozpYstKNZjNc/ynOaTFgS3kNwwM";
+        s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
+        l.parentNode.insertBefore(s, l);
+        })({})
+        </script>
+    </div>
 </body>
 </html>

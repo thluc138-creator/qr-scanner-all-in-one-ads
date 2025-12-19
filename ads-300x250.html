@@ -1,116 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <title>Ad 300x250</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: transparent; 
-            overflow: hidden;
+        body {
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 250px;
+            overflow: hidden;
         }
-        #ad-container {
+        .ad-container {
             width: 300px;
             height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <div id="ad-container"></div>
-    
-    <script>
-        // ========== COMPREHENSIVE ENVIRONMENT CLEANING ==========
-        (function() {
-            'use strict';
-            
-            // 1. Override document.referrer
-            try {
-                Object.defineProperty(document, 'referrer', {
-                    get: function() { return 'https://thluc138-creator.github.io/'; },
-                    configurable: false
-                });
-            } catch(e) {}
-            
-            // 2. Block parent/top frame detection
-            try {
-                Object.defineProperty(window, 'parent', { 
-                    get: function() { return window; },
-                    configurable: false
-                });
-                Object.defineProperty(window, 'top', { 
-                    get: function() { return window; },
-                    configurable: false
-                });
-                Object.defineProperty(window, 'frameElement', { 
-                    get: function() { return null; },
-                    configurable: false
-                });
-            } catch(e) {}
-            
-            // 3. Clean Chrome extension traces
-            try {
-                if (window.chrome) {
-                    // Keep chrome object but remove extension-specific properties
-                    if (window.chrome.runtime) delete window.chrome.runtime;
-                    if (window.chrome.extension) delete window.chrome.extension;
-                    if (window.chrome.app) delete window.chrome.app;
-                }
-            } catch(e) {}
-            
-            // 4. Override XMLHttpRequest to clean referrer
-            const originalXHR = window.XMLHttpRequest;
-            window.XMLHttpRequest = function() {
-                const xhr = new originalXHR();
-                const originalOpen = xhr.open;
-                xhr.open = function(method, url) {
-                    // Call original but don't send extension referrer
-                    return originalOpen.apply(xhr, arguments);
-                };
-                return xhr;
-            };
-            
-            // 5. Override fetch to clean referrer
-            const originalFetch = window.fetch;
-            window.fetch = function(url, options) {
-                options = options || {};
-                options.referrer = 'https://thluc138-creator.github.io/';
-                options.referrerPolicy = 'no-referrer';
-                return originalFetch(url, options);
-            };
-            
-        })();
-        
-        // ========== LOAD ADS ==========
-        const AD_KEY = '9c9e360fd4ca00dbdb74d7e64a33f6ed';
-        const REFRESH_INTERVAL = 60000;
-        
-        function loadAd() {
-            const container = document.getElementById('ad-container');
-            container.innerHTML = '';
-            
-            window.atOptions = {
-                'key': AD_KEY,
-                'format': 'iframe',
-                'height': 250,
-                'width': 300,
-                'params': {}
-            };
-            
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'https://www.highperformanceformat.com/' + AD_KEY + '/invoke.js';
-            script.async = true;
-            container.appendChild(script);
-        }
-        
-        setTimeout(loadAd, 150);
-        setInterval(loadAd, REFRESH_INTERVAL);
-    </script>
+    <div class="ad-container">
+        <!-- HilltopAds Banner Code - Zone #6729876 -->
+        <script>
+        (function(gwxrr){
+        var d = document,
+            s = d.createElement('script'),
+            l = d.scripts[d.scripts.length - 1];
+        s.settings = gwxrr || {};
+        s.src = "//cultivated-cell.com/bDX.VtsidNGTlt0RYgWfcw/Cegmq9dugZfUzlrkJPYTEYz3HM/jFk_4xNozpYstKNZjNc/ynOaTFgS3kNwwM";
+        s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
+        l.parentNode.insertBefore(s, l);
+        })({})
+        </script>
+    </div>
 </body>
 </html>
