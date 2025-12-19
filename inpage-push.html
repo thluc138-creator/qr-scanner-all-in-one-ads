@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <title>In-Page Push</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: transparent; 
+            overflow: hidden;
+        }
+        /* Force mute all audio/video elements */
+        audio, video {
+            muted: true !important;
+            volume: 0 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- HilltopAds In-Page Push - Zone #6730050 -->
+    <script>
+    (function(bvnl){
+        var d = document,
+            s = d.createElement('script'),
+            l = d.scripts[d.scripts.length - 1];
+        s.settings = bvnl || {};
+        s.src = "//cultivated-cell.com/b/XqV-sld.GFl/0qY/WJcQ/pelm/9/uVZzUSlOkPPoT/Ye3aMOzIAtwONATZAZtfNzjmcCzXMJDAAQ1oMUQH";
+        s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
+        l.parentNode.insertBefore(s, l);
+    })({})
+    </script>
+    
+    <!-- Auto mute any audio that might play -->
+    <script>
+    (function() {
+        // Mute all existing and future audio/video elements
+        function muteAll() {
+            document.querySelectorAll('audio, video').forEach(function(el) {
+                el.muted = true;
+                el.volume = 0;
+            });
+        }
+        
+        // Initial mute
+        muteAll();
+        
+        // Observer for new elements
+        var observer = new MutationObserver(function(mutations) {
+            muteAll();
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+        
+        // Periodic check every 2 seconds
+        setInterval(muteAll, 2000);
+    })();
+    </script>
+</body>
+</html>
