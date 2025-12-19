@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <title>HilltopAds Test Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .test-box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .test-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: normal;
+        }
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .ad-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px dashed #ddd;
+        }
+        .info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #0066cc;
+        }
+        .console-log {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+            margin-top: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .console-log .error {
+            color: #ff6b6b;
+        }
+        .console-log .success {
+            color: #51cf66;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 HilltopAds Test Page</h1>
+        
+        <div class="test-box">
+            <div class="test-title">
+                📊 Banner 300x250 Test
+                <span id="adStatus" class="status loading">⏳ Loading...</span>
+            </div>
+            <div class="ad-wrapper" id="adContainer">
+                <!-- HilltopAds Banner Code - Zone #6729876 -->
+                <script>
+                (function(gwxrr){
+                var d = document,
+                    s = d.createElement('script'),
+                    l = d.scripts[d.scripts.length - 1];
+                s.settings = gwxrr || {};
+                s.src = "//cultivated-cell.com/bDX.VtsidNGTlt0RYgWfcw/Cegmq9dugZfUzlrkJPYTEYz3HM/jFk_4xNozpYstKNZjNc/ynOaTFgS3kNwwM";
+                s.async = true;
+                s.referrerPolicy = 'no-referrer-when-downgrade';
+                s.onload = function() {
+                    console.log('[HilltopAds] Script loaded successfully');
+                    logMessage('Script loaded successfully', 'success');
+                };
+                s.onerror = function() {
+                    console.error('[HilltopAds] Failed to load script');
+                    logMessage('Failed to load script - BLOCKED?', 'error');
+                    document.getElementById('adStatus').className = 'status error';
+                    document.getElementById('adStatus').textContent = '❌ Blocked/Error';
+                };
+                l.parentNode.insertBefore(s, l);
+                })({})
+                </script>
+            </div>
+            <div class="info">
+                <strong>Zone ID:</strong> #6729876<br>
+                <strong>Format:</strong> MultiTag Banner 300x250<br>
+                <strong>Domain:</strong> cultivated-cell.com
+            </div>
+        </div>
+        
+        <div class="test-box">
+            <div class="test-title">📋 Console Log</div>
+            <div class="console-log" id="consoleLog">
+                <div>[Test] Page loaded at: <span id="loadTime"></span></div>
+                <div>[Test] Referrer: <span id="referrer"></span></div>
+                <div>[Test] Waiting for HilltopAds script...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Log functions
+        function logMessage(msg, type) {
+            var log = document.getElementById('consoleLog');
+            var div = document.createElement('div');
+            div.className = type || '';
+            div.textContent = '[HilltopAds] ' + msg;
+            log.appendChild(div);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        // Display info
+        document.getElementById('loadTime').textContent = new Date().toLocaleTimeString();
+        document.getElementById('referrer').textContent = document.referrer || '(empty)';
+        
+        // Check if ad loaded after 5 seconds
+        setTimeout(function() {
+            var container = document.getElementById('adContainer');
+            var status = document.getElementById('adStatus');
+            
+            // Check if any iframe or ad content was added
+            var hasAd = container.querySelector('iframe') || 
+                        container.querySelector('ins') ||
+                        container.querySelector('[id*="ad"]') ||
+                        container.children.length > 1;
+            
+            if (hasAd) {
+                status.className = 'status success';
+                status.textContent = '✅ Ad Loaded';
+                logMessage('Ad content detected!', 'success');
+            } else {
+                status.className = 'status error';
+                status.textContent = '⚠️ No Ad Content';
+                logMessage('No ad content found after 5s', 'error');
+            }
+        }, 5000);
+        
+        // Monitor network errors
+        window.addEventListener('error', function(e) {
+            if (e.filename && e.filename.includes('cultivated-cell')) {
+                logMessage('Network error: ' + e.message, 'error');
+            }
+        }, true);
+    </script>
+</body>
+</html>
