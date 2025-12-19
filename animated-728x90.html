@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner 728x90</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: transparent; 
+            overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .banner-container {
+            width: 728px;
+            height: 90px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .banner-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            cursor: pointer;
+        }
+        .banner-slide.active { opacity: 1; }
+        
+        /* KiotViet Banner */
+        .banner-kiotviet {
+            background: linear-gradient(135deg, #00a65a 0%, #00d46a 100%);
+        }
+        .banner-kiotviet .logo { font-size: 28px; font-weight: bold; color: white; }
+        .banner-kiotviet .text { color: white; text-align: center; flex: 1; }
+        .banner-kiotviet .title { font-size: 18px; font-weight: bold; }
+        .banner-kiotviet .subtitle { font-size: 13px; opacity: 0.9; }
+        .banner-kiotviet .cta {
+            background: white;
+            color: #00a65a;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        /* Sapo Banner */
+        .banner-sapo {
+            background: linear-gradient(135deg, #e74c3c 0%, #ff6b6b 100%);
+        }
+        .banner-sapo .logo { font-size: 28px; font-weight: bold; color: white; }
+        .banner-sapo .text { color: white; text-align: center; flex: 1; }
+        .banner-sapo .title { font-size: 18px; font-weight: bold; }
+        .banner-sapo .subtitle { font-size: 13px; opacity: 0.9; }
+        .banner-sapo .cta {
+            background: white;
+            color: #e74c3c;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        /* Kalodata Banner */
+        .banner-kalodata {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .banner-kalodata .logo { font-size: 28px; font-weight: bold; color: white; }
+        .banner-kalodata .text { color: white; text-align: center; flex: 1; }
+        .banner-kalodata .title { font-size: 18px; font-weight: bold; }
+        .banner-kalodata .subtitle { font-size: 13px; opacity: 0.9; }
+        .banner-kalodata .cta {
+            background: white;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        /* Shopee Banner */
+        .banner-shopee {
+            background: linear-gradient(135deg, #ee4d2d 0%, #ff6633 100%);
+        }
+        .banner-shopee .logo { font-size: 28px; font-weight: bold; color: white; }
+        .banner-shopee .text { color: white; text-align: center; flex: 1; }
+        .banner-shopee .title { font-size: 18px; font-weight: bold; }
+        .banner-shopee .subtitle { font-size: 13px; opacity: 0.9; }
+        .banner-shopee .cta {
+            background: white;
+            color: #ee4d2d;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.8);
+            animation: progress 8s linear infinite;
+        }
+        @keyframes progress { from { width: 0%; } to { width: 100%; } }
+        
+        .cta:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <div class="banner-container">
+        <!-- KiotViet -->
+        <div class="banner-slide banner-kiotviet active" onclick="window.open('https://www.kiotviet.vn/?ref=qrscanner', '_blank')">
+            <div class="logo">🏪 KiotViet</div>
+            <div class="text">
+                <div class="title">Phần mềm quản lý bán hàng #1 Việt Nam</div>
+                <div class="subtitle">Dùng thử miễn phí 15 ngày - Không cần thẻ tín dụng</div>
+            </div>
+            <div class="cta">Dùng thử ngay →</div>
+            <div class="progress-bar"></div>
+        </div>
+        
+        <!-- Sapo -->
+        <div class="banner-slide banner-sapo" onclick="window.open('https://www.sapo.vn/?ref=qrscanner', '_blank')">
+            <div class="logo">🛒 Sapo</div>
+            <div class="text">
+                <div class="title">Nền tảng quản lý bán hàng đa kênh</div>
+                <div class="subtitle">Tích hợp Shopee, Lazada, TikTok Shop - Đồng bộ tự động</div>
+            </div>
+            <div class="cta">Đăng ký ngay →</div>
+            <div class="progress-bar"></div>
+        </div>
+        
+        <!-- Kalodata -->
+        <div class="banner-slide banner-kalodata" onclick="window.open('https://kalodata.com/?ref=qrscanner', '_blank')">
+            <div class="logo">📊 Kalodata</div>
+            <div class="text">
+                <div class="title">Phân tích dữ liệu TikTok Shop</div>
+                <div class="subtitle">Tìm sản phẩm hot, theo dõi đối thủ, tăng doanh số</div>
+            </div>
+            <div class="cta">Khám phá ngay →</div>
+            <div class="progress-bar"></div>
+        </div>
+        
+        <!-- Shopee -->
+        <div class="banner-slide banner-shopee" onclick="window.open('https://shopee.vn/m/affiliate-program?ref=qrscanner', '_blank')">
+            <div class="logo">🛍️ Shopee</div>
+            <div class="text">
+                <div class="title">Chương trình Affiliate Shopee</div>
+                <div class="subtitle">Kiếm hoa hồng 3-10% mỗi đơn hàng - Thu nhập thụ động</div>
+            </div>
+            <div class="cta">Tham gia ngay →</div>
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+    
+    <script>
+        const slides = document.querySelectorAll('.banner-slide');
+        let currentSlide = 0;
+        
+        function showNextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        setInterval(showNextSlide, 8000);
+        
+        // Track impressions
+        console.log('[Animated Banner 728x90] Impression logged');
+    </script>
+</body>
+</html>

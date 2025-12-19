@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner 160x600</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: transparent; 
+            overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .banner-container {
+            width: 160px;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .banner-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        .banner-slide.active { opacity: 1; }
+        
+        .logo { font-size: 40px; margin-bottom: 15px; }
+        .brand { font-size: 20px; font-weight: bold; color: white; margin-bottom: 15px; }
+        .title { font-size: 16px; font-weight: bold; color: white; margin-bottom: 10px; line-height: 1.3; }
+        .features { font-size: 12px; color: rgba(255,255,255,0.9); margin-bottom: 20px; line-height: 1.6; }
+        .feature-item { margin-bottom: 8px; }
+        .cta {
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 13px;
+            margin-top: auto;
+            transition: transform 0.3s;
+        }
+        .cta:hover { transform: scale(1.05); }
+        
+        /* KiotViet */
+        .banner-kiotviet { background: linear-gradient(180deg, #00a65a 0%, #008f4c 100%); }
+        .banner-kiotviet .cta { background: white; color: #00a65a; }
+        
+        /* Sapo */
+        .banner-sapo { background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%); }
+        .banner-sapo .cta { background: white; color: #e74c3c; }
+        
+        /* Kalodata */
+        .banner-kalodata { background: linear-gradient(180deg, #667eea 0%, #5a6fd6 100%); }
+        .banner-kalodata .cta { background: white; color: #667eea; }
+        
+        /* Shopee */
+        .banner-shopee { background: linear-gradient(180deg, #ee4d2d 0%, #d73919 100%); }
+        .banner-shopee .cta { background: white; color: #ee4d2d; }
+        
+        .progress-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            transition: background 0.3s;
+        }
+        .dot.active { background: white; }
+    </style>
+</head>
+<body>
+    <div class="banner-container">
+        <!-- KiotViet -->
+        <div class="banner-slide banner-kiotviet active" onclick="window.open('https://www.kiotviet.vn/?ref=qrscanner', '_blank')">
+            <div class="logo">🏪</div>
+            <div class="brand">KiotViet</div>
+            <div class="title">Phần mềm quản lý bán hàng #1</div>
+            <div class="features">
+                <div class="feature-item">✓ Quản lý kho hàng</div>
+                <div class="feature-item">✓ Báo cáo doanh thu</div>
+                <div class="feature-item">✓ Quản lý nhân viên</div>
+                <div class="feature-item">✓ Tích hợp TMĐT</div>
+                <div class="feature-item">✓ Hỗ trợ 24/7</div>
+            </div>
+            <div class="cta">Dùng thử miễn phí →</div>
+        </div>
+        
+        <!-- Sapo -->
+        <div class="banner-slide banner-sapo" onclick="window.open('https://www.sapo.vn/?ref=qrscanner', '_blank')">
+            <div class="logo">🛒</div>
+            <div class="brand">Sapo</div>
+            <div class="title">Bán hàng đa kênh chuyên nghiệp</div>
+            <div class="features">
+                <div class="feature-item">✓ Tích hợp Shopee</div>
+                <div class="feature-item">✓ Tích hợp Lazada</div>
+                <div class="feature-item">✓ Tích hợp TikTok</div>
+                <div class="feature-item">✓ Đồng bộ tự động</div>
+                <div class="feature-item">✓ Website bán hàng</div>
+            </div>
+            <div class="cta">Đăng ký ngay →</div>
+        </div>
+        
+        <!-- Kalodata -->
+        <div class="banner-slide banner-kalodata" onclick="window.open('https://kalodata.com/?ref=qrscanner', '_blank')">
+            <div class="logo">📊</div>
+            <div class="brand">Kalodata</div>
+            <div class="title">Phân tích TikTok Shop</div>
+            <div class="features">
+                <div class="feature-item">✓ Tìm sản phẩm hot</div>
+                <div class="feature-item">✓ Phân tích đối thủ</div>
+                <div class="feature-item">✓ Dự đoán trend</div>
+                <div class="feature-item">✓ Báo cáo chi tiết</div>
+                <div class="feature-item">✓ Cập nhật realtime</div>
+            </div>
+            <div class="cta">Khám phá ngay →</div>
+        </div>
+        
+        <!-- Shopee -->
+        <div class="banner-slide banner-shopee" onclick="window.open('https://shopee.vn/m/affiliate-program?ref=qrscanner', '_blank')">
+            <div class="logo">🛍️</div>
+            <div class="brand">Shopee Affiliate</div>
+            <div class="title">Kiếm tiền online dễ dàng</div>
+            <div class="features">
+                <div class="feature-item">✓ Hoa hồng 3-10%</div>
+                <div class="feature-item">✓ Thanh toán hàng tuần</div>
+                <div class="feature-item">✓ Triệu sản phẩm</div>
+                <div class="feature-item">✓ Link tracking</div>
+                <div class="feature-item">✓ Thu nhập thụ động</div>
+            </div>
+            <div class="cta">Tham gia ngay →</div>
+        </div>
+        
+        <div class="progress-dots">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+            <div class="dot" data-index="3"></div>
+        </div>
+    </div>
+    
+    <script>
+        const slides = document.querySelectorAll('.banner-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        
+        function showNextSlide() {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        setInterval(showNextSlide, 8000);
+        
+        console.log('[Animated Banner 160x600] Impression logged');
+    </script>
+</body>
+</html>
